@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { sha256 } from '../../src/adapters/crypto/sha256.js';
 import { canonicalJson } from '../../src/domain/canonical-json.js';
 
-// Shared by the development-only contract validators; nothing here is packaged with the CLI.
+// Shared by every contract family's validators.
 export interface Diagnostic {
   code: string;
   path: string;

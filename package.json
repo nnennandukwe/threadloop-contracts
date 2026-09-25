@@ -1,0 +1,46 @@
+{
+  "name": "threadloop-contracts",
+  "version": "0.1.0",
+  "description": "Versioned ThreadLoop Controller Contract specifications: schemas, fixtures, conformance corpus, and reference validators.",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnennandukwe/threadloop-contracts.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "spec:workflow-graph:schemas": "tsx scripts/contract-kernel/publish-schemas.ts workflow-graph",
+    "spec:controller:schemas": "tsx scripts/contract-kernel/publish-schemas.ts controller",
+    "spec:execution:schemas": "tsx scripts/contract-kernel/publish-schemas.ts execution",
+    "spec:executor:schemas": "tsx scripts/contract-kernel/publish-schemas.ts executor",
+    "spec:conformance:schemas": "tsx scripts/contract-kernel/publish-schemas.ts controller-conformance",
+    "spec:conformance:check": "tsx scripts/controller-conformance/check.ts",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run spec:conformance:check && npm test"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "yaml": "2.9.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "25.9.5",
+    "eslint": "10.9.0",
+    "eslint-plugin-security": "4.0.1",
+    "globals": "17.11.0",
+    "prettier": "3.9.6",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vitest": "4.1.11"
+  }
+}
