@@ -56,3 +56,21 @@ jobs:
             npm run --silent "spec:${family}:schemas"
           done
           git diff --exit-code -- docs/contracts
+
+  secrets:
+    name: Secret scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Scan repository history with Gitleaks
+        run: >-
+          docker run --rm --volume "$PWD:/repo:ro"
+          docker.io/zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f
+          detect --source=/repo --redact --no-banner --log-opts=--all
