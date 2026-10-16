@@ -24,10 +24,10 @@
     "spec:executor:schemas": "tsx scripts/contract-kernel/publish-schemas.ts executor",
     "spec:conformance:schemas": "tsx scripts/contract-kernel/publish-schemas.ts controller-conformance",
     "spec:conformance:check": "tsx scripts/controller-conformance/check.ts",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run spec:conformance:check && npm test && npm run build && npm run smoke:pack",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run spec:conformance:check && npm test && npm run smoke:pack",
     "build": "node scripts/build-package.mjs",
     "prepare": "npm run build",
-    "smoke:pack": "node scripts/smoke-package.mjs"
+    "smoke:pack": "npm run build && node scripts/smoke-package.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0",

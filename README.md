@@ -67,6 +67,11 @@ process supervision or the GAAP bridge tracked in
 [ThreadLoop #111](https://github.com/nnennandukwe/threadloop/issues/111). The v0.1 contract bytes and canonical digest
 rules stay unchanged.
 
+The executor mapper follows the frozen ThreadLoop mapping, including its documented
+[completion-effect compatibility limit](docs/contracts/executor-v0.1/README.md#results-and-one-shot-authority-handling).
+It also requires ledger approvals to bind the subject current at their event. It's not a replacement for the live GAAP
+producer's full semantic validation or an independent signed-evidence consumer.
+
 ## Consumers
 
 - **RunInvariant** pins the controller conformance corpus by commit. Its ThreadLoop harness reads
