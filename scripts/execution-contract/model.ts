@@ -25,7 +25,7 @@ import {
   type ReceiptAdmission,
 } from './contracts.js';
 
-interface OperationResult {
+export interface OperationResult {
   disposition: 'applied' | 'rejected' | 'conflict';
   code: string;
   revision: number;
@@ -34,7 +34,7 @@ interface OperationResult {
   recovery: string;
 }
 
-interface ExecutionProjection {
+export interface ExecutionProjection {
   revision: number;
   evaluated_at: string;
   request_status: 'open' | 'satisfied' | 'cancelled' | 'invalidated';
