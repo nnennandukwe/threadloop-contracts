@@ -24,7 +24,10 @@
     "spec:executor:schemas": "tsx scripts/contract-kernel/publish-schemas.ts executor",
     "spec:conformance:schemas": "tsx scripts/contract-kernel/publish-schemas.ts controller-conformance",
     "spec:conformance:check": "tsx scripts/controller-conformance/check.ts",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run spec:conformance:check && npm test"
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run spec:conformance:check && npm test && npm run smoke:pack",
+    "build": "node scripts/build-package.mjs",
+    "prepare": "npm run build",
+    "smoke:pack": "npm run build && node scripts/smoke-package.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0",
@@ -42,5 +45,31 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.67.0",
     "vitest": "4.1.11"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./workflow": {
+      "types": "./dist/src/public/workflow.d.ts",
+      "import": "./dist/src/public/workflow.js"
+    },
+    "./controller": {
+      "types": "./dist/src/public/controller.d.ts",
+      "import": "./dist/src/public/controller.js"
+    },
+    "./execution": {
+      "types": "./dist/src/public/execution.d.ts",
+      "import": "./dist/src/public/execution.js"
+    },
+    "./executor": {
+      "types": "./dist/src/public/executor.d.ts",
+      "import": "./dist/src/public/executor.js"
+    },
+    "./assets/*": "./dist/docs/contracts/*"
   }
 }

@@ -32,6 +32,15 @@ export function validateGaapRequest(value: unknown): ValidationResult<GaapReques
   if (!requestSchema(value)) return invalid('GAAP_SCHEMA_INVALID', ajv.errorsText(requestSchema.errors));
   if (hasBlankText(value))
     return invalid('GAAP_SCHEMA_INVALID', 'GAAP text values must contain non-whitespace characters.');
+  if (
+    value.required_verification.evidence_types.some(
+      (type) => !['command_output', 'artifact', 'verification_attestation'].includes(type),
+    )
+  )
+    return invalid(
+      'GAAP_VERIFICATION_TYPE',
+      'Independent verification requires command_output, artifact, or verification_attestation evidence.',
+    );
   const policies = new Set<string>();
   for (const policy of value.policies) {
     const canonical = canonicalExecutorJson(policy);

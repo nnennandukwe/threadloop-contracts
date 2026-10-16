@@ -8,3 +8,6 @@ docs/contracts/executor-v0.1/upstream/gaap/*.json
 
 # Exact Controller Conformance Protocol byte vectors.
 docs/contracts/controller-conformance-v0.1/vectors/*.canonical
+
+# Generated package output.
+dist
